@@ -1,0 +1,15 @@
+{
+  "name": "fluidtext",
+  "version": "1.0.0",
+  "description": "Make your text always fit both the width & height of a container.",
+  "main": "index.js",
+  "repository": "https://github.com/Ravenstine/fluidtext",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "text"
+  ],
+  "author": "Ben Titcomb",
+  "license": "MIT"
+}
