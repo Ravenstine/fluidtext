@@ -36,6 +36,10 @@ function fluidText(el, options){
           testLine  = line ? `${line} ${word}` : word,
           metrics   = ctx.measureText(testLine),
           testWidth = metrics.width;
+      if(ctx.measureText(word).width > maxWidth){
+        fontSize = fontSize - 0.1;
+        return getNewFontSize();
+      }
       if(testWidth > maxWidth){
         y   += (fontSize * lineHeight);
         line = word;
