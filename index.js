@@ -5,12 +5,24 @@ function fluidText(el, options){
       ctx            = canvas.getContext('2d'),
       fontSize, lineHeight, multiplier;
 
+  function innerWidth(el,cs){
+    var paddingX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+    var borderX  = parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+    return el.offsetWidth - paddingX - borderX;
+  }
+
+  function innerHeight(el,cs){
+    var paddingY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingButtom);
+    var borderY  = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+    return el.offsetHeight - paddingY - borderY;
+  }
+
   function getNewFontSize(){
     var style        = getComputedStyle(el),
         maxFontSize  = options.maxFontSize || parseFloat(style['font-size']),
         minFontSize  = options.minFontSize || 0;
 
-    fontSize         = fontSize || maxFontSize;
+    fontSize         = fontSize   || maxFontSize;
     lineHeight       = lineHeight || (options.lineHeight || (parseFloat(style['line-height']) / parseFloat(style['font-size'])));
     
     var fontFamily   = options.fontFamily  || style['font-family'],
@@ -24,6 +36,8 @@ function fluidText(el, options){
         i            = 0,
         maxWidth     = options.maxWidth  || el.clientWidth,
         maxHeight    = options.maxHeight || el.clientHeight;
+        // maxWidth     = options.maxWidth  || (options.outerDimensions ? el.clientWidth  : innerWidth(el,style)),
+        // maxHeight    = options.maxHeight || (options.outerDimensions ? el.clientHeight : innerHeight(el,style));
 
     ctx.font         = `${fontStyle} ${fontVariant} ${fontWeight} ${fontSize}px ${fontFamily}`;
 
